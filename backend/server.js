@@ -4,6 +4,10 @@ process.loadEnvFile(".env");
 
 const port = process.env.PORT || 4000;
 
-app.get("/", (req, res) => res.send("Hello"));
+// Global Middleware
+app.use(express.json());
 
-app.listen(port, () => console.log(`Server Listening on port ${port}`));
+// Static Files
+app.use("/images", express.static("./static/images"));
+
+app.listen(port, () => console.log(`Server live on http://localhost:${port}`));
