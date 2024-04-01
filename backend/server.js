@@ -4,7 +4,6 @@ const app = express();
 const mongoose = require("mongoose");
 
 // Project imports
-const userModel = require("./models/User");
 const userRouter = require("./routes/user");
 const errorHandler = require("./middleswares/errorHandler");
 

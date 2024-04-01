@@ -1,0 +1,5 @@
+CODE - PURPOSE
+0    - Error Occured (From Error Handling Middleware)
+1    - User Registered
+2    - User already exists
+3    - Email already Registered
