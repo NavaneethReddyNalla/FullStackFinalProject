@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // Project imports
 const userModel = require("./models/User");
+const userRouter = require("./routes/user");
 
 // Loading  the Environment variables
 process.loadEnvFile(".env");
@@ -19,6 +20,9 @@ app.use(express.json());
 
 // Static Files
 app.use("/images", express.static("./static/images"));
+
+// Routing
+app.use("/user", userRouter);
 
 // Listening to requests
 app.listen(port, () => console.log(`Server live on http://localhost:${port}`));
