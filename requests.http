@@ -10,3 +10,16 @@ Content-Type: application/json
     "password": "1234",
     "photo": "ram.jpg"
 }
+
+###
+POST http://localhost:5000/user/new-user HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Sita",
+    "username": "sita",
+    "email": "sita@gmail.com",
+    "mobile": "1234567890",
+    "password": "1234",
+    "photo": "sita.jpg"
+}

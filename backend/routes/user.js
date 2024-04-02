@@ -1,5 +1,7 @@
 const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
+const bcryptjs = require("bcryptjs");
+process.loadEnvFile(".env");
 
 const UserModel = require("../models/User");
 const ProfileModel = require("../models/Profile");
@@ -10,6 +12,11 @@ userRouter.post(
   "/new-user",
   expressAsyncHandler(async (req, res) => {
     const newUser = req.body;
+    req.body.password = await bcryptjs.hash(
+      req.body.password,
+      +process.env.BCRYPT_SALT
+    );
+
     const userInstance = new UserModel(newUser);
     const profileInstance = new ProfileModel({ user: userInstance._id });
     userInstance.profile = profileInstance._id;
