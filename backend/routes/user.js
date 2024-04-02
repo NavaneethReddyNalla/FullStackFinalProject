@@ -1,6 +1,7 @@
 const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 process.loadEnvFile(".env");
 
 const UserModel = require("../models/User");
@@ -8,6 +9,7 @@ const ProfileModel = require("../models/Profile");
 
 const userRouter = express.Router();
 
+// User Registration
 userRouter.post(
   "/new-user",
   expressAsyncHandler(async (req, res) => {
@@ -35,6 +37,47 @@ userRouter.post(
     }
 
     res.send({ message: "User Registered", status: 1 });
+  })
+);
+
+// User Login
+userRouter.post(
+  "/login",
+  expressAsyncHandler(async (req, res) => {
+    const user = req.body;
+
+    const dbUser = await UserModel.findOne(
+      {
+        username: user.username,
+      },
+      { _id: false, __v: false }
+    ).lean();
+
+    if (dbUser == null)
+      return res.send({ message: "User doesn't exist", status: 4 });
+
+    const passwordCheck = await bcryptjs.compare(
+      user.password,
+      dbUser.password
+    );
+
+    if (!passwordCheck)
+      return res.send({ message: "Password didn't match", status: 5 });
+
+    const signedToken = jwt.sign(
+      { username: user.username },
+      process.env.SECRET_KEY,
+      { expiresIn: "1d" }
+    );
+
+    delete dbUser.password;
+
+    res.send({
+      message: "Login Successful",
+      status: 6,
+      user: dbUser,
+      token: signedToken,
+    });
   })
 );
 
