@@ -6,6 +6,7 @@ process.loadEnvFile(".env");
 
 const UserModel = require("../models/User");
 const ProfileModel = require("../models/Profile");
+const verifyToken = require("../middleswares/verifyToken");
 
 const userRouter = express.Router();
 
@@ -80,6 +81,16 @@ userRouter.post(
       user: dbUser,
       token: signedToken,
     });
+  })
+);
+
+// Protected route test
+userRouter.get(
+  "/protected",
+  verifyToken,
+  expressAsyncHandler(async (req, res) => {
+    const users = await UserModel.find();
+    res.send({ message: "All Users", payload: users });
   })
 );
 

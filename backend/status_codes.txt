@@ -5,3 +5,4 @@ CODE - PURPOSE
 3    - Email already Registered
 4    - User doesn't exist
 5    - Password doesn't match
+6    - No token found

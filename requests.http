@@ -32,3 +32,7 @@ Content-Type: application/json
     "username": "ram",
     "password": "1234"
 }
+
+### User Protected Route test
+GET http://localhost:5000/user/protected HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhbSIsImlhdCI6MTcxMjA1ODc1NywiZXhwIjoxNzEyMTQ1MTU3fQ.dZ_HBGp9B-9P2XTg11k8pbyueDdUWYhF7n7jAz3brrw
