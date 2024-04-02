@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
   mobile: { type: String, required: true },
   password: { type: String, required: true },
   photo: { type: String, required: true },
-  profile: { type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true },
+  profile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Profile",
+    unique: true,
+  },
 });
 
 userSchema.plugin(uniqueValidator, { message: "{PATH} must be unique" });

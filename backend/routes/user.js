@@ -51,9 +51,11 @@ userRouter.post(
         username: user.username,
       },
       { _id: false, __v: false }
-    ).lean();
+    )
+      .populate("profile", "-user -__v") // Populate the profile without the Profile user and __v
+      .lean();
 
-    if (dbUser == null)
+    if (dbUser === null)
       return res.send({ message: "User doesn't exist", status: 4 });
 
     const passwordCheck = await bcryptjs.compare(
