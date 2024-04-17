@@ -33,6 +33,30 @@ Content-Type: application/json
     "password": "1234"
 }
 
-### User Protected Route test
-GET http://localhost:5000/user/protected HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhbSIsImlhdCI6MTcxMjA1ODc1NywiZXhwIjoxNzEyMTQ1MTU3fQ.dZ_HBGp9B-9P2XTg11k8pbyueDdUWYhF7n7jAz3brrw
+### Profile Completion
+PUT http://localhost:5000/profile/update/660bd31d7f33c7a00e1dac88 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhbSIsImlhdCI6MTcxMzM1OTkyOSwiZXhwIjoxNzEzNDQ2MzI5fQ.Ubaeyd2qHcZVi82KMjYmIVK8s-SaTBB36I8h2YFx-sI
+
+{
+    "age": 21,
+    "job": "King",
+    "residenceState": "Ayodhya",
+    "maritalStatus": "single",
+    "hairColour": "black",
+    "eyeColour": "black",
+    "skinComplexion": "Brown",
+    "height": 6.17,
+    "weight": 81,
+    "horoscope": "Cancer",
+    "bodyBuild": "medium",
+    "foodChoice": "Vegetarian",
+    "motherTongue": "Avadhi",
+    "highestLevelOfEducation": "Gurukula",
+    "physicalStatus": "Fit",
+    "aboutMe": "I'm born in Raghuvanshi family and the eldest son of king Dhasharatha",
+    "aboutFamily": "My family are best",
+    "hobbies": ["Archery", "Martial Arts"],
+    "salaryRange": "I'm a King",
+    "photos": ["ram1.jpg", "ram2.jpg"]
+}

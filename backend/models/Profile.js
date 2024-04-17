@@ -20,7 +20,7 @@ const profileSchema = mongoose.Schema({
   physicalStatus: String,
   aboutMe: String,
   aboutFamily: String,
-  hobbies: String,
+  hobbies: [String],
   salaryRange: String,
   photos: [String],
 });

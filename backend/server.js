@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // Project imports
 const userRouter = require("./routes/user");
+const profileRouter = require("./routes/profile");
 const errorHandler = require("./middleswares/errorHandler");
 
 // Loading  the Environment variables
@@ -23,6 +24,7 @@ app.use("/images", express.static("./static/images"));
 
 // Routing
 app.use("/user", userRouter);
+app.use("/profile", profileRouter);
 
 // Error Handling
 app.use(errorHandler);

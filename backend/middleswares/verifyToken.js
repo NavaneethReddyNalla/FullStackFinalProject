@@ -5,7 +5,7 @@ const verifyToken = (req, res, next) => {
   const bearerToken = req.headers.authorization;
 
   if (!bearerToken) {
-    return res.send({ message: "Token not found", status: 6 });
+    return res.send({ message: "Unauthorized Request", status: 6 });
   }
 
   const token = bearerToken.split(" ")[1];
