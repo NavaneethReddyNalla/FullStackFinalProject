@@ -7,6 +7,7 @@ process.loadEnvFile(".env");
 const UserModel = require("../models/User");
 const ProfileModel = require("../models/Profile");
 const verifyToken = require("../middleswares/verifyToken");
+const profileUpload = require("../middleswares/profileUpload");
 
 const userRouter = express.Router();
 
@@ -83,6 +84,24 @@ userRouter.post(
     });
   })
 );
+
+userRouter.post("/profile-pic", (req, res) => {
+  profileUpload(req, res, (err) => {
+    if (err) {
+      console.log(err.message);
+      res.send({
+        message: "Error occured while uploading the profile pic",
+        status: 8,
+      });
+    } else {
+      res.send({
+        message: "Successfully uploaded",
+        status: 9,
+        url: `/images/profile_pics/${req.file.filename}`,
+      });
+    }
+  });
+});
 
 // Protected route test
 userRouter.get(

@@ -7,3 +7,5 @@ CODE - PURPOSE
 5    - Password doesn't match
 6    - Unauthorized Request
 7    - Profile Updated
+8    - Profile Pic upload failed
+9    - Successful profile pic upload
