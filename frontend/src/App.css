@@ -5,3 +5,7 @@
   background-color: lightgray;
   transform: translateX(-50%);
 }
+
+.App {
+  text-align: center;
+}

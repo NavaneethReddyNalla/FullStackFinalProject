@@ -1,0 +1,5 @@
+header {
+    background-color: var(--dark);
+    color: white;
+    text-transform: uppercase;
+}
