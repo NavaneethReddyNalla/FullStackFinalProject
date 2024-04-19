@@ -14,7 +14,7 @@ function Header() {
           <NavLink className="nav-button" to="/login">
             Login
           </NavLink>
-          <NavLink className="nav-button" to="/signup">
+          <NavLink className="nav-button" to="/register">
             Sign Up
           </NavLink>
         </ul>
