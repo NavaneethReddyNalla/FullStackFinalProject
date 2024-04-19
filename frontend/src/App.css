@@ -6,6 +6,10 @@
   transform: translateX(-50%);
 }
 
+main {
+  min-height: 88vh;
+}
+
 .App {
   text-align: center;
 }
