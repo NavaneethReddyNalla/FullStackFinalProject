@@ -1,0 +1,9 @@
+.home {
+    text-align: justify;
+    padding: 20px;
+}
+
+.home p {
+    width: 50%;
+    margin: auto;
+}
