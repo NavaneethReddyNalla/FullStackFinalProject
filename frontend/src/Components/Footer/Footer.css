@@ -1,0 +1,5 @@
+footer {
+    min-height: 12vh;
+    background-color: var(--dark);
+    margin-top: 20px;
+}
