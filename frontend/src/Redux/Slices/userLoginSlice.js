@@ -33,9 +33,9 @@ export const userLoginSlice = createSlice({
       state.loginStatus = false;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: (builder) =>
     builder
-      .addCase(userLoginSlice.pending, (state, action) => {
+      .addCase(userLoginThunk.pending, (state, action) => {
         state.isPending = true;
       })
       .addCase(userLoginThunk.fulfilled, (state, action) => {
@@ -51,8 +51,7 @@ export const userLoginSlice = createSlice({
         state.errorOccured = true;
         state.errorMessage = action.payload.message;
         state.loginStatus = false;
-      });
-  },
+      }),
 });
 
 export const { resetState } = userLoginSlice.actions;
