@@ -1,8 +1,10 @@
 import "./Register.css";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import profileImage from "../../Assets/profile.jpeg";
+import axios from "axios";
 
 function Register() {
   const {
@@ -12,13 +14,29 @@ function Register() {
   } = useForm();
   const [image, setImage] = useState(profileImage);
   const [file, setFile] = useState();
+  const [err, setErr] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
 
-  function onFormSubmit(data) {
-    console.log(data);
+  async function onFormSubmit(data) {
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("profilePic", file);
+
+    const imageRes = await axios.post("/user/profile-pic", formData);
+
+    delete data.profilePic;
+    data.photo = imageRes.data.url;
+    const res = await axios.post("/user/new-user", data);
+
+    if (res.data.status === 1) {
+      navigate("/");
+    } else {
+      setErr(res.data.message);
+    }
   }
 
   useEffect(() => {
@@ -69,6 +87,11 @@ function Register() {
         {errors.username?.type === "required" && (
           <p className="lead fs-6 text-danger">Username is required</p>
         )}
+        {errors.username?.type === "minLength" && (
+          <p className="lead fs-6 text-danger">
+            Username must be at least 5 characters long
+          </p>
+        )}
 
         <input
           type="email"
@@ -100,6 +123,8 @@ function Register() {
         {errors.password?.type === "required" && (
           <p className="lead fs-6 text-danger">Password is required</p>
         )}
+
+        {err && <p className="lead fs-6 text-danger">{err}</p>}
 
         <button type="submit" className="btn btn-success">
           Register

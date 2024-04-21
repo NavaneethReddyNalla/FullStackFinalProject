@@ -11,6 +11,10 @@
     margin-bottom: 20px;
 }
 
+.register-form label {
+    margin-right: 10px;
+}
+
 .preview {
     width: 190px;
     height: 190px;
