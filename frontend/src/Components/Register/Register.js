@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import profileImage from "../../Assets/profile.jpeg";
 import axios from "axios";
+import ProfilePic from "../ProfilePic/ProfilePic";
 
 function Register() {
   const {
@@ -54,7 +55,8 @@ function Register() {
   return (
     <div>
       <form className="register-form" onSubmit={handleSubmit(onFormSubmit)}>
-        <img src={image} alt="Profile Preview" className="preview" />
+        {/* <img src={image} alt="Profile Preview" className="preview" /> */}
+        <ProfilePic imageSrc={image} dimension="190px" />
         <br />
         <label htmlFor="photo">Upload Profile Pic</label>
         <input
