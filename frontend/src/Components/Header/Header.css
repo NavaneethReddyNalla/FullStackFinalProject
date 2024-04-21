@@ -23,3 +23,8 @@ header {
     text-decoration: none;
     color: white;
 }
+
+.profile-button {
+    background-color: transparent;
+    border: none;
+}

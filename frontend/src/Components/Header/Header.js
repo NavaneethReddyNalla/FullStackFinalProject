@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import ProfilePic from "../ProfilePic/ProfilePic";
 function Header() {
   const { loginStatus, currentUser } = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function logout() {
     dispatch(resetState());
@@ -33,7 +34,12 @@ function Header() {
             </>
           ) : (
             <>
-              <ProfilePic imageSrc={currentUser.photo} dimension="50px" />
+              <button
+                className="profile-button"
+                onClick={() => navigate(`${currentUser.username}`)}
+              >
+                <ProfilePic imageSrc={currentUser.photo} dimension="50px" />
+              </button>
               <button className="btn btn-danger" onClick={logout}>
                 Sign Out
               </button>
