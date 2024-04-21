@@ -1,0 +1,12 @@
+.login-form {
+    background-color: var(--background);
+    width: 50%;
+    margin: auto;
+    padding: 20px 100px;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+
+.login-form * {
+    margin-bottom: 20px;
+}
