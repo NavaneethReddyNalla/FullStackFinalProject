@@ -4,6 +4,7 @@ const profileSchema = mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true },
   profileComplete: { type: Boolean, default: false },
   age: Number,
+  dob: Date,
   job: String,
   residenceState: String,
   maritalStatus: String,
