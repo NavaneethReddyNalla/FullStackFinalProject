@@ -5,7 +5,8 @@ CODE - PURPOSE
 3    - Email already Registered
 4    - User doesn't exist
 5    - Password doesn't match
-6    - Unauthorized Request
+6    - Login Successful
 7    - Profile Updated
 8    - Profile Pic upload failed
 9    - Successful profile pic upload
+10   - Unauthorized Request
