@@ -14,7 +14,7 @@ function ProfileForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const [files, setFiles] = useState();
+  const [files, setFiles] = useState();
   const [err, setErr] = useState("");
   const { currentUser } = useSelector((state) => state.userLogin);
   const navigate = useNavigate();
@@ -59,24 +59,36 @@ function ProfileForm() {
     "photos",
   ];
 
-  // function imageChange(event) {
-  //   setFiles(event.target.files);
-  // }
+  function imageChange(event) {
+    console.log(event.target.files);
+    setFiles(event.target.files);
+  }
 
   async function updateProfile(data) {
     data.hobbies = data.hobbies.split(",").map((hobby) => hobby.trim());
     data.username = currentUser.username;
+    console.log(files);
+
+    const formData = new FormData();
+
+    delete data.photos;
+    formData.append("user", JSON.stringify(data));
+    for (let file of files) {
+      console.log(file);
+      formData.append("photos", file);
+    }
 
     const axiosWithToken = getAxiosWithToken();
     const res = await axiosWithToken.put(
       `/profile/update/${currentUser.profile._id}`,
-      data
+      formData
     );
     console.log(data);
+    console.log(res.data);
 
     if (res.data.status === 7) {
       dispatch(updateProfileStatus(true));
-      navigate(`/${currentUser.username}/`);
+      // navigate(`/${currentUser.username}/`);
     } else {
       setErr(res.data.message);
     }
@@ -316,7 +328,7 @@ function ProfileForm() {
           multiple
           accept="image/*"
           {...register("photos", { required: "At least 1 photo required" })}
-          // onChange={imageChange}
+          onChange={imageChange}
         />
 
         {fields.map((field) => (

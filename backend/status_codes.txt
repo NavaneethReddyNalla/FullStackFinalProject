@@ -10,3 +10,4 @@ CODE - PURPOSE
 8    - Profile Pic upload failed
 9    - Successful profile pic upload
 10   - Unauthorized Request
+11   - Photos upload failed

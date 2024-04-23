@@ -4,15 +4,16 @@ process.loadEnvFile(".env");
 
 const photosStorage = multer.diskStorage({
   destination: (req, file, callback) => {
-    const username = req.body.username;
+    const username = JSON.parse(req.body.user).username;
     const destination = path.join(
       __dirname,
       `../static/images/photos/${username}`
     );
     callback(null, destination);
   },
+  // destination: path.join(__dirname, "../static/images/photos"),
   filename: (req, file, callback) => {
-    const imageName = Date.now() + path.extname(file);
+    const imageName = Date.now() + path.extname(file.originalname);
     callback(null, imageName);
   },
 });
