@@ -1,6 +1,8 @@
 const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const bcryptjs = require("bcryptjs");
+const fs = require("fs");
+const path = require("path");
 const jwt = require("jsonwebtoken");
 process.loadEnvFile(".env");
 
@@ -36,6 +38,16 @@ userRouter.post(
       } else {
         throw err;
       }
+    }
+
+    if (
+      !fs.existsSync(
+        path.join(__dirname, `../static/images/photos/${newUser.username}`)
+      )
+    ) {
+      fs.mkdirSync(
+        path.join(__dirname, `../static/images/photos/${newUser.username}`)
+      );
     }
 
     res.send({ message: "User Registered", status: 1 });

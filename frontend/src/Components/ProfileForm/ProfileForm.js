@@ -67,14 +67,11 @@ function ProfileForm() {
   async function updateProfile(data) {
     data.hobbies = data.hobbies.split(",").map((hobby) => hobby.trim());
     data.username = currentUser.username;
-    console.log(files);
 
     const formData = new FormData();
 
-    delete data.photos;
     formData.append("user", JSON.stringify(data));
     for (let file of files) {
-      console.log(file);
       formData.append("photos", file);
     }
 
@@ -83,12 +80,10 @@ function ProfileForm() {
       `/profile/update/${currentUser.profile._id}`,
       formData
     );
-    console.log(data);
-    console.log(res.data);
 
     if (res.data.status === 7) {
       dispatch(updateProfileStatus(true));
-      // navigate(`/${currentUser.username}/`);
+      navigate(`/${currentUser.username}/`);
     } else {
       setErr(res.data.message);
     }
