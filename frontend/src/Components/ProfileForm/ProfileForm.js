@@ -1,7 +1,12 @@
-import { useForm } from "react-hook-form";
 import "./ProfileForm.css";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage } from "@hookform/error-message";
+// import axios from "axios";
+import getAxiosWithToken from "../util";
+import { updateProfileStatus } from "../../Redux/Slices/userLoginSlice";
 
 function ProfileForm() {
   const {
@@ -9,7 +14,11 @@ function ProfileForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [files, setFiles] = useState();
+  // const [files, setFiles] = useState();
+  const [err, setErr] = useState("");
+  const { currentUser } = useSelector((state) => state.userLogin);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const horoscopes = [
     "Capricorn",
@@ -50,13 +59,27 @@ function ProfileForm() {
     "photos",
   ];
 
-  function imageChange(event) {
-    setFiles(event.target.files);
-  }
+  // function imageChange(event) {
+  //   setFiles(event.target.files);
+  // }
 
   async function updateProfile(data) {
     data.hobbies = data.hobbies.split(",").map((hobby) => hobby.trim());
+    data.username = currentUser.username;
+
+    const axiosWithToken = getAxiosWithToken();
+    const res = await axiosWithToken.put(
+      `/profile/update/${currentUser.profile._id}`,
+      data
+    );
     console.log(data);
+
+    if (res.data.status === 7) {
+      dispatch(updateProfileStatus(true));
+      navigate(`/${currentUser.username}/`);
+    } else {
+      setErr(res.data.message);
+    }
   }
 
   return (
@@ -293,7 +316,7 @@ function ProfileForm() {
           multiple
           accept="image/*"
           {...register("photos", { required: "At least 1 photo required" })}
-          onChange={imageChange}
+          // onChange={imageChange}
         />
 
         {fields.map((field) => (
@@ -306,6 +329,8 @@ function ProfileForm() {
             )}
           />
         ))}
+
+        {err !== "" && <p className="lead fs-5 text-danger">{err}</p>}
 
         <button type="submit" className="btn btn-primary">
           Update

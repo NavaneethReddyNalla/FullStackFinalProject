@@ -13,6 +13,7 @@ function Header() {
   function logout() {
     dispatch(resetState());
     sessionStorage.removeItem("token");
+    navigate("/");
   }
 
   return (

@@ -32,6 +32,9 @@ export const userLoginSlice = createSlice({
       state.errorMessage = "";
       state.loginStatus = false;
     },
+    updateProfileStatus: (state, action) => {
+      state.currentUser.profile.profileComplete = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -54,5 +57,5 @@ export const userLoginSlice = createSlice({
       }),
 });
 
-export const { resetState } = userLoginSlice.actions;
+export const { resetState, updateProfileStatus } = userLoginSlice.actions;
 export default userLoginSlice.reducer;

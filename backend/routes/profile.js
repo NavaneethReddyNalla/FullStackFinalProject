@@ -3,6 +3,7 @@ const expressAsyncHandler = require("express-async-handler");
 const verifyToken = require("../middleswares/verifyToken");
 
 const ProfileModel = require("../models/Profile");
+const photosUpload = require("../middleswares/photosUpload");
 
 const profileRouter = express.Router();
 
@@ -10,9 +11,11 @@ const profileRouter = express.Router();
 profileRouter.put(
   "/update/:profileId",
   verifyToken,
+  photosUpload,
   expressAsyncHandler(async (req, res) => {
     const profileId = req.params.profileId;
     const profile = req.body;
+    delete profile.photos;
     const dbProfile = await ProfileModel.findByIdAndUpdate(
       profileId,
       { ...profile, profileComplete: true },
