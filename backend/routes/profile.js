@@ -17,15 +17,14 @@ profileRouter.put("/update/:profileId", verifyToken, (req, res) => {
         status: 11,
       });
     } else {
-      console.log(req.files);
+      // console.log(req.files);
       const profileId = req.params.profileId;
-      console.log(req.headers["content-type"]);
       const profile = JSON.parse(req.body.user);
-      console.log(profile);
+      profile.photos = req.files.map((file) => file.filename);
+      // console.log(profile);
 
       // const profile = req.body;
 
-      delete profile.photos;
       const dbProfile = await ProfileModel.findByIdAndUpdate(
         profileId,
         { ...profile, profileComplete: true },
