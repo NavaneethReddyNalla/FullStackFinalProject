@@ -1,13 +1,16 @@
+import "./Matches.css";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import getAxiosWithToken from "../util";
 import ProfilePic from "../ProfilePic/ProfilePic";
+import { useNavigate } from "react-router-dom";
 
 function Matches() {
   const [matches, setMatches] = useState([]);
   const [err, setErr] = useState("");
   const { currentUser } = useSelector((state) => state.userLogin);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -38,9 +41,34 @@ function Matches() {
                 <div className="col" key={match._id}>
                   <div className="card w-100 user-card">
                     <div className="card-body">
-                      <ProfilePic imageSrc={match.photo} dimension={"50px"} />
+                      <ProfilePic imageSrc={match.photo} dimension={"100px"} />
                       <h4 className="card-title">{match.name}</h4>
-                      <h6 className="card-sub-title">{match.profile.job}</h6>
+                      <h6 className="card-sub-title">
+                        Job: {match.profile.job}
+                      </h6>
+                      <p className="card-text">
+                        Education: {match.profile.highestLevelOfEducation}
+                      </p>
+                      <p className="card-text">Age: {match.profile.age}</p>
+                      <p className="card-text">
+                        State: {match.profile.residenceState}
+                      </p>
+                      <p className="card-text">
+                        Salary Range: {match.profile.salaryRange}
+                      </p>
+                      <p className="card-text">
+                        Date of Birth: {match.profile.dob}
+                      </p>
+                      <p className="card-text">
+                        Horoscope: {match.profile.horoscope}
+                      </p>
+
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={() => navigate("match", { state: match })}
+                      >
+                        View
+                      </button>
                     </div>
                   </div>
                 </div>

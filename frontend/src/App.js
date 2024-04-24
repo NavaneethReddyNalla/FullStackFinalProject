@@ -8,6 +8,7 @@ import Profile from "./Components/Profile/Profile";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProfileForm from "./Components/ProfileForm/ProfileForm";
 import Matches from "./Components/Matches/Matches";
+import ProfileView from "./Components/ProfileView/ProfileView";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,7 @@ function App() {
               children: [{ path: "", element: <Matches /> }],
             },
             { path: "edit", element: <ProfileForm /> },
+            { path: "match", element: <ProfileView /> },
           ],
         },
       ],
