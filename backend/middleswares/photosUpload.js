@@ -13,7 +13,7 @@ const photosStorage = multer.diskStorage({
   },
   // destination: path.join(__dirname, "../static/images/photos"),
   filename: (req, file, callback) => {
-    const imageName = Date.now() + path.extname(file.originalname);
+    const imageName = Date.now() + file.originalname;
     callback(null, imageName);
   },
 });
