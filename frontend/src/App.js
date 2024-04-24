@@ -7,6 +7,7 @@ import Register from "./Components/Register/Register";
 import Profile from "./Components/Profile/Profile";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProfileForm from "./Components/ProfileForm/ProfileForm";
+import Matches from "./Components/Matches/Matches";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +22,11 @@ function App() {
           path: ":username",
           element: <Profile />,
           children: [
-            { path: "", element: <Dashboard /> },
+            {
+              path: "",
+              element: <Dashboard />,
+              children: [{ path: "", element: <Matches /> }],
+            },
             { path: "edit", element: <ProfileForm /> },
           ],
         },

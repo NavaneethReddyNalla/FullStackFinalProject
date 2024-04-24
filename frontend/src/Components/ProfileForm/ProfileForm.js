@@ -284,12 +284,12 @@ function ProfileForm() {
           <option value="" disabled>
             --Salary Range--
           </option>
-          <option value="0">&lt; 500000 LPA</option>
-          <option value="1">&lt; 1000000 LPA</option>
-          <option value="2">&lt; 1500000 LPA</option>
-          <option value="3">&lt; 2000000 LPA</option>
-          <option value="4">&lt; 3000000 LPA</option>
-          <option value="5">&gt; 3000000 LPA</option>
+          <option value="&lt; 500000 LPA">&lt; 500000 LPA</option>
+          <option value="&lt; 1000000 LPA">&lt; 1000000 LPA</option>
+          <option value="&lt; 1500000 LPA">&lt; 1500000 LPA</option>
+          <option value="&lt; 2000000 LPA">&lt; 2000000 LPA</option>
+          <option value="&lt; 3000000 LPA">&lt; 3000000 LPA</option>
+          <option value="&gt; 3000000 LPA">&gt; 3000000 LPA</option>
         </select>
 
         <input

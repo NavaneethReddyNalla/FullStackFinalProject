@@ -10,6 +10,7 @@ const UserModel = require("../models/User");
 const ProfileModel = require("../models/Profile");
 const verifyToken = require("../middleswares/verifyToken");
 const profileUpload = require("../middleswares/profileUpload");
+const { match } = require("assert");
 
 const userRouter = express.Router();
 
@@ -115,13 +116,18 @@ userRouter.post("/profile-pic", (req, res) => {
   });
 });
 
-// Protected route test
 userRouter.get(
-  "/protected",
+  "/all/:gender",
   verifyToken,
   expressAsyncHandler(async (req, res) => {
-    const users = await UserModel.find();
-    res.send({ message: "All Users", payload: users });
+    const users = await UserModel.find({ gender: req.params.gender })
+      .populate("profile")
+      .lean();
+    res.send({
+      message: "Specified Gender users",
+      payload: users.filter((user) => user.profile.profileComplete),
+      status: 12,
+    });
   })
 );
 

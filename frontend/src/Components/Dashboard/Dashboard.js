@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -12,7 +12,11 @@ function Dashboard() {
     }
   }, [currentUser, navigate]);
 
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 }
 
 export default Dashboard;

@@ -116,6 +116,30 @@ function Register() {
         )}
 
         <input
+          type="radio"
+          {...register("gender", { required: true })}
+          id="male"
+          value="male"
+          className="form-check-input"
+        />
+        <label htmlFor="male" className="form-check-label">
+          Male
+        </label>
+        <input
+          type="radio"
+          {...register("gender", { required: true })}
+          id="female"
+          value="female"
+          className="form-check-input"
+        />
+        <label htmlFor="female" className="form-check-label">
+          Female
+        </label>
+        {errors.gender?.type === "required" && (
+          <p className="lead fs-6 text-danger">Gender is required</p>
+        )}
+
+        <input
           type="password"
           placeholder="Password"
           {...register("password", { required: true })}
