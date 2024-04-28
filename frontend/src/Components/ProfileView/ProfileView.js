@@ -1,27 +1,27 @@
+import "./ProfileView.css";
 import React from "react";
 import { useLocation } from "react-router-dom";
+
+import ProfilePic from "../ProfilePic/ProfilePic";
 
 function ProfileView() {
   const match = useLocation().state;
 
   return (
-    <div className="container-fluid">
-      <div className="w-50 container profile-view">
-        <div id="photos" class="carousel slide w-75 mx-auto">
-          <div class="carousel-inner">
-            {/* <div class="carousel-item active">
-              <img
-                src={`/images/photos/${match.username}/${match.profile.photos[0]}`}
-                class="d-block w-100"
-                alt="..."
-              />
-            </div> */}
+    <div className="profile-view-screen">
+      <div className="basic-details">
+        <ProfilePic imageSrc={match.photo} dimension="150vw" />
+        <h2>{match.username}</h2>
+      </div>
+      <div className="mx-auto profile-view">
+        <div id="photos" className="carousel slide mx-auto">
+          <div className="carousel-inner">
             {match.profile.photos.map((photo) => {
               return (
-                <div class="carousel-item active" key={photo}>
+                <div className="carousel-item active" key={photo}>
                   <img
                     src={`/images/photos/${match.username}/${photo}`}
-                    class="d-block w-100"
+                    className="d-block w-100 carousel-photo"
                     alt={photo}
                   />
                 </div>
@@ -29,24 +29,31 @@ function ProfileView() {
             })}
           </div>
           <button
-            class="carousel-control-prev"
+            className="carousel-control-prev"
             type="button"
             data-bs-target="#photos"
             data-bs-slide="prev"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
           </button>
           <button
-            class="carousel-control-next"
+            className="carousel-control-next"
             type="button"
             data-bs-target="#photos"
             data-bs-slide="next"
           >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
+        <div className="profile-details"></div>
       </div>
     </div>
   );
