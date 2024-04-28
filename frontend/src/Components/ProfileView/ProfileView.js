@@ -20,7 +20,12 @@ function ProfileView() {
           <div className="carousel-inner">
             {match.profile.photos.map((photo) => {
               return (
-                <div className="carousel-item active" key={photo}>
+                <div
+                  className={`carousel-item ${
+                    photo !== match.profile.photos[0] ? "active" : ""
+                  }`}
+                  key={photo}
+                >
                   <img
                     src={`/images/photos/${match.username}/${photo}`}
                     className="d-block w-100 carousel-photo"
