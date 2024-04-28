@@ -11,7 +11,9 @@ function ProfileView() {
     <div className="profile-view-screen">
       <div className="basic-details">
         <ProfilePic imageSrc={match.photo} dimension="150vw" />
-        <h2>{match.username}</h2>
+        <h2>
+          {match.username} ({match.gender === "male" ? "M" : "F"})
+        </h2>
       </div>
       <div className="mx-auto profile-view">
         <div id="photos" className="carousel slide mx-auto">

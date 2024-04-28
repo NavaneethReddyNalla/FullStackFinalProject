@@ -120,7 +120,10 @@ userRouter.get(
   "/all/:gender",
   verifyToken,
   expressAsyncHandler(async (req, res) => {
-    const users = await UserModel.find({ gender: req.params.gender })
+    const users = await UserModel.find(
+      { gender: req.params.gender },
+      { password: false, _id: false }
+    )
       .populate("profile")
       .lean();
     res.send({

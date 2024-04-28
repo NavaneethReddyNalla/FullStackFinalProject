@@ -33,52 +33,81 @@ function Matches() {
   return (
     <div className="mt-5">
       {err !== "" && <p className="lead fs-6 text-danger">{err}</p>}
-      {matches.length > 0 ? (
-        <div className="container-fluid">
-          <div className="row row-cols-4">
-            {matches.map((match) => {
-              return (
-                <div className="col" key={match._id}>
-                  <div className="card w-100 user-card">
-                    <div className="card-body">
-                      <ProfilePic imageSrc={match.photo} dimension={"100px"} />
-                      <h4 className="card-title">{match.name}</h4>
-                      <h6 className="card-sub-title">
-                        Job: {match.profile.job}
-                      </h6>
-                      <p className="card-text">
-                        Education: {match.profile.highestLevelOfEducation}
-                      </p>
-                      <p className="card-text">Age: {match.profile.age}</p>
-                      <p className="card-text">
-                        State: {match.profile.residenceState}
-                      </p>
-                      <p className="card-text">
-                        Salary Range: {match.profile.salaryRange}
-                      </p>
-                      <p className="card-text">
-                        Date of Birth: {match.profile.dob}
-                      </p>
-                      <p className="card-text">
-                        Horoscope: {match.profile.horoscope}
-                      </p>
+      <div className="container-fluid">
+        <div className="row row-cols-4">
+          {matches.length > 0 ? (
+            <>
+              {matches.map((match) => {
+                return (
+                  <div className="col" key={match._id}>
+                    <div className="card w-100 user-card">
+                      <div className="card-body">
+                        <ProfilePic
+                          imageSrc={match.photo}
+                          dimension={"100px"}
+                        />
+                        <h4 className="card-title">{match.name}</h4>
+                        <h6 className="card-sub-title">
+                          Job: {match.profile.job}
+                        </h6>
+                        <p className="card-text">
+                          Education: {match.profile.highestLevelOfEducation}
+                        </p>
+                        <p className="card-text">Age: {match.profile.age}</p>
+                        <p className="card-text">
+                          State: {match.profile.residenceState}
+                        </p>
+                        <p className="card-text">
+                          Salary Range: {match.profile.salaryRange}
+                        </p>
+                        <p className="card-text">
+                          Date of Birth: {match.profile.dob}
+                        </p>
+                        <p className="card-text">
+                          Horoscope: {match.profile.horoscope}
+                        </p>
 
+                        <button
+                          className="btn btn-outline-success"
+                          onClick={() => navigate("match", { state: match })}
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            [1, 2, 3, 4, 5, 6, 7, 8].map((id) => {
+              return (
+                <div className="col">
+                  <div class="card" aria-hidden="true" key={id}>
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <h5 class="card-title placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                      </h5>
+                      <p class="card-text placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-6"></span>
+                        <span class="placeholder col-8"></span>
+                      </p>
                       <button
-                        className="btn btn-outline-success"
-                        onClick={() => navigate("match", { state: match })}
-                      >
-                        View
-                      </button>
+                        className="btn btn-primary disabled placeholder col-6"
+                        aria-disabled="true"
+                      ></button>
                     </div>
                   </div>
                 </div>
               );
-            })}
-          </div>
+            })
+          )}
         </div>
-      ) : (
-        <p className="lead fs-6 text-danger">No Users Found</p>
-      )}
+      </div>
     </div>
   );
 }
