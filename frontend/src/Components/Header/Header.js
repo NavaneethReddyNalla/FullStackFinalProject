@@ -63,7 +63,11 @@ function Header() {
                   <li>
                     <button
                       className="dropdown-item btn"
-                      onClick={() => navigate(`${currentUser.username}`)}
+                      onClick={() =>
+                        navigate(`${currentUser.username}/match`, {
+                          state: currentUser,
+                        })
+                      }
                     >
                       Profile
                     </button>
