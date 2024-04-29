@@ -15,7 +15,7 @@ function ProfileView() {
           {match.username} ({match.gender === "male" ? "M" : "F"})
         </h2>
       </div>
-      <div className="mx-auto profile-view">
+      <div className="profile-view">
         <div id="photos" className="carousel slide mx-auto">
           <div className="carousel-inner">
             {match.profile.photos.map((photo) => {
