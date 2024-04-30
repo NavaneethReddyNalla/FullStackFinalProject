@@ -3,9 +3,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import ProfilePic from "../ProfilePic/ProfilePic";
+import { useSelector } from "react-redux";
 
 function ProfileView() {
   const match = useLocation().state;
+  const { currentUser } = useSelector((state) => state.userLogin);
 
   return (
     <div className="profile-view-screen">
@@ -242,6 +244,57 @@ function ProfileView() {
           <p>{match.profile.aboutMe}</p>
           <h2>About My Family</h2>
           <p>{match.profile.aboutFamily}</p>
+
+          {currentUser.username !== match.username && (
+            <div className="Contact Details">
+              <button
+                className="btn btn-warning float-end"
+                data-bs-toggle="modal"
+                data-bs-target="#contactModal"
+              >
+                Get Contact Details
+              </button>
+              <div
+                className="modal fade"
+                id="contactModal"
+                tabindex="-1"
+                aria-labelledby="contactModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1 className="modal-title fs-5" id="exampleModalLabel">
+                        Contact Details of {match.name}
+                      </h1>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <h4>Mobile:</h4>
+                      <p className="lead fs-5">{match.mobile}</p>
+
+                      <h4>Email:</h4>
+                      <p className="lead fs-5">{match.email}</p>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
