@@ -80,7 +80,11 @@ function ProfileView() {
             <input
               type="text"
               className="form-control"
-              value={match.profile.dob}
+              value={match.profile.dob
+                .slice(0, 10)
+                .split("-")
+                .reverse()
+                .join("/")}
               readOnly
             />
           </div>
@@ -96,11 +100,93 @@ function ProfileView() {
           </div>
 
           <div className="input-group">
-            <span className="input-group-text">Name</span>
+            <span className="input-group-text">Marital Status</span>
             <input
               type="text"
               className="form-control"
-              value={match.name}
+              value={match.profile.maritalStatus}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Mother Tongue</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.motherTongue}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Skin Complexion</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.skinComplexion}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Residence</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.residenceState}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Height</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.height}
+              readOnly
+            />
+            <span className="input-group-text">cm</span>
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Weight</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.weight}
+              readOnly
+            />
+            <span className="input-group-text">Kg</span>
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Physical Status</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.physicalStatus}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Body Build</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.bodyBuild}
+              readOnly
+            />
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-text">Hobbies</span>
+            <input
+              type="text"
+              className="form-control"
+              value={match.profile.hobbies.join(", ")}
               readOnly
             />
           </div>
@@ -151,7 +237,12 @@ function ProfileView() {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <div className="profile-details"></div>
+        <div className="text-start ms-5 profile-details">
+          <h2>About Me</h2>
+          <p>{match.profile.aboutMe}</p>
+          <h2>About My Family</h2>
+          <p>{match.profile.aboutFamily}</p>
+        </div>
       </div>
     </div>
   );
