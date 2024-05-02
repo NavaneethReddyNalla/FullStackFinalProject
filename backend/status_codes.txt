@@ -11,3 +11,4 @@ CODE - PURPOSE
 9    - Successful profile pic upload
 10   - Unauthorized Request
 11   - Photos upload failed
+12   - All users of specified genders
