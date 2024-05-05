@@ -1,7 +1,9 @@
 .home-main p {
     width: 25%;
     margin: auto;
-    float: right;
+    position: absolute;
+    right: 0;
+    /* float: right; */
     color: white;
     height: 88vh;
     font-size: 1rem;
