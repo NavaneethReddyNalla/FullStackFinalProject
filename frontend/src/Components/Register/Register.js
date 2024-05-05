@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import profileImage from "../../Assets/profile.jpeg";
-import RegisterMain from "../../Assets/register-main.jpg";
 import axios from "axios";
 import ProfilePic from "../ProfilePic/ProfilePic";
 
