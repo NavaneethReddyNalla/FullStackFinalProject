@@ -1,11 +1,32 @@
 import "./Home.css";
 import HomeMain from "../../Assets/home-main.jpg";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Home() {
+  const { loginStatus, currentUser } = useSelector((state) => state.userLogin);
+  const navigate = useNavigate();
+
   return (
     <>
-      <section class="home-main">
+      {loginStatus && !currentUser.profile.profileCompleted && (
+        <div className="bg-warning py-1">
+          <p>
+            You've to complete your profile to start looking for matches.{" "}
+            <a
+              href="#home-main"
+              onClick={(event) => {
+                event.preventDefault();
+                navigate(`${currentUser.username}`);
+              }}
+            >
+              Complete your profile
+            </a>
+          </p>
+        </div>
+      )}
+      <section class="home-main" id="home-main">
         <img src={HomeMain} alt="Main" className="background" />
         <p>
           Welcome to Our Matrimony, where we believe in helping you find not
