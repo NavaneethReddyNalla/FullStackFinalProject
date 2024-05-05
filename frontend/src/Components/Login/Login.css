@@ -1,10 +1,11 @@
 .login {
     background-color: var(--background);
     margin: auto;
+    margin-top: 10vh;
     /* padding: 20px 100px; */
-    margin-top: 10px;
     border-radius: 30px;
     width: 66vw;
+    min-height: 65vh;
 }
 
 .login-form * {

@@ -33,6 +33,7 @@ function Login() {
       <div className="login" id="login">
         <img src={LoginPic} alt="Login" />
         <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+          <h4>Login</h4>
           <input
             type="text"
             placeholder="Username"
@@ -66,7 +67,7 @@ function Login() {
                 navigate("/register");
               }}
             >
-              Sign In
+              Sign Up
             </a>
           </p>
 

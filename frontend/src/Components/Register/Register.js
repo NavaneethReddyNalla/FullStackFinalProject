@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import profileImage from "../../Assets/profile.jpeg";
+import RegisterMain from "../../Assets/register-main.jpg";
 import axios from "axios";
 import ProfilePic from "../ProfilePic/ProfilePic";
 
@@ -53,16 +54,20 @@ function Register() {
   }, [file]);
 
   return (
-    <div>
+    <div className="register">
       <form className="register-form" onSubmit={handleSubmit(onFormSubmit)}>
         {/* <img src={image} alt="Profile Preview" className="preview" /> */}
-        <ProfilePic imageSrc={image} dimension="190px" />
+        <h2>Register</h2>
+        <ProfilePic imageSrc={image} dimension="190vh" />
         <br />
-        <label htmlFor="photo">Upload Profile Pic</label>
+        <label htmlFor="photo" className="form-label">
+          Upload Profile Pic
+        </label>
         <input
           type="file"
           accept="image/*"
           id="preview-button"
+          className="form-control"
           {...register("photo", { required: true })}
           onChange={handleChange}
         />
@@ -115,26 +120,32 @@ function Register() {
           <p className="lead fs-6 text-danger">Mobile Number is required</p>
         )}
 
-        <input
-          type="radio"
-          {...register("gender", { required: true })}
-          id="male"
-          value="male"
-          className="form-check-input"
-        />
-        <label htmlFor="male" className="form-check-label">
-          Male
-        </label>
-        <input
-          type="radio"
-          {...register("gender", { required: true })}
-          id="female"
-          value="female"
-          className="form-check-input"
-        />
-        <label htmlFor="female" className="form-check-label">
-          Female
-        </label>
+        <label htmlFor="gender">Gender:</label>
+        <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="radio"
+            {...register("gender", { required: true })}
+            id="male"
+            value="male"
+          />
+          <label className="form-check-label" htmlFor="male">
+            Male
+          </label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="radio"
+            {...register("gender", { required: true })}
+            id="female"
+            value="female"
+          />
+          <label className="form-check-label" htmlFor="female">
+            Female
+          </label>
+        </div>
+
         {errors.gender?.type === "required" && (
           <p className="lead fs-6 text-danger">Gender is required</p>
         )}
