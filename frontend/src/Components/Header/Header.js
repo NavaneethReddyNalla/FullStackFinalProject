@@ -57,7 +57,10 @@ function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <ProfilePic imageSrc={currentUser.photo} dimension="50px" />
+                  <ProfilePic
+                    imageSrc={"http://localhost:5000" + currentUser.photo}
+                    dimension="50px"
+                  />
                 </button>
                 <ul class="dropdown-menu">
                   <li>

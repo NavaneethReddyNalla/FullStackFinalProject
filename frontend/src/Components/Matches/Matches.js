@@ -19,7 +19,9 @@ function Matches() {
       const axiosWithToken = getAxiosWithToken();
       const gender = currentUser.gender === "male" ? "female" : "male";
 
-      const res = await axiosWithToken.get(`/user/all/${gender}`);
+      const res = await axiosWithToken.get(
+        `http://localhost:5000/user/all/${gender}`
+      );
 
       if (res.data.status === 12) {
         setMatches(res.data.payload);

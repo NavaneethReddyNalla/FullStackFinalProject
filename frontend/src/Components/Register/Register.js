@@ -27,11 +27,14 @@ function Register() {
     formData.append("username", data.username);
     formData.append("profilePic", file);
 
-    const imageRes = await axios.post("/user/profile-pic", formData);
+    const imageRes = await axios.post(
+      "http://localhost:5000/user/profile-pic",
+      formData
+    );
 
     delete data.profilePic;
     data.photo = imageRes.data.url;
-    const res = await axios.post("/user/new-user", data);
+    const res = await axios.post("http://localhost:5000/user/new-user", data);
 
     if (res.data.status === 1) {
       navigate("/");

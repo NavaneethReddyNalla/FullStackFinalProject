@@ -77,7 +77,7 @@ function ProfileForm() {
 
     const axiosWithToken = getAxiosWithToken();
     const res = await axiosWithToken.put(
-      `/profile/update/${currentUser.profile._id}`,
+      `http://localhost:5000/profile/update/${currentUser.profile._id}`,
       formData
     );
 
