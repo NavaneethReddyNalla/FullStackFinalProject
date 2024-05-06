@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <>
-      {loginStatus && !currentUser.profile.profileCompleted && (
+      {loginStatus && !currentUser.profile.profileComplete && (
         <div className="bg-warning py-1">
           <p>
             You've to complete your profile to start looking for matches.{" "}
