@@ -90,7 +90,7 @@ function ProfileForm() {
   }
 
   return (
-    <div>
+    <div className="profile-form-div">
       <form className="profile-form" onSubmit={handleSubmit(updateProfile)}>
         <h3>Profile</h3>
         <input

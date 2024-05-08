@@ -10,3 +10,9 @@
 .profile-form * {
     margin-bottom: 20px;
 }
+
+.profile-form-div {
+    background-image: url("../../Assets/register-main.jpg");
+    background-size: cover;
+    padding: 1.5rem;
+}

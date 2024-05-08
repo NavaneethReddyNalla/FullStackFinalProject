@@ -4,7 +4,7 @@ import axios from "axios";
 export const userLoginThunk = createAsyncThunk(
   "userLogin",
   async (user, thunkApi) => {
-    const res = await axios.post("/user/login", user);
+    const res = await axios.post("http://localhost:5000/user/login", user);
 
     if (res.data.status === 6) {
       sessionStorage.setItem("token", res.data.token);

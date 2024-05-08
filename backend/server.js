@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path");
 
 // Project imports
 const userRouter = require("./routes/user");
@@ -15,6 +16,9 @@ process.loadEnvFile(".env");
 mongoose.connect(process.env.DB_URL);
 
 const port = process.env.PORT || 4000;
+
+// Serving the React project
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // Global Middleware
 app.use(express.json());
